@@ -7,6 +7,9 @@ const { model, Schema } = mongoose;
 const bookingFlowSchema = new Schema({
   client: { type: Schema.Types.ObjectId, ref: "User" },
   studio: { type: Schema.Types.ObjectId, ref: "User" },
+  bookingId: {
+    type: String,
+  },
   bookingDate: {
     type: String,
   },

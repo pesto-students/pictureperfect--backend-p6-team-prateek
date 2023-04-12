@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const BookingFlow = require("../models/bookingFlowModel");
 const mongoose = require("mongoose");
+const shortid = require("shortid");
 
 const getBookingData = async (req, res) => {
   const { email } = req.body;
@@ -17,17 +18,13 @@ const getAllBookings = async (req, res) => {
 
   const bookingData = await User.findOne({ _id: user_id }).populate({
     path: "bookingFlowData",
+    populate: {
+      path: "studio",
+      populate: {
+        path: "userData",
+      },
+    },
   });
-
-  // const bookingArray = [];
-
-  // userData.bookingFlowData.map(async (item) => {
-  //   const bookingData = await BookingFlow.find({ _id: item });
-  //   bookingArray.push(bookingData);
-  //   console.log(bookingData);
-  // });
-
-  console.log(bookingData.bookingFlowData);
 
   res.status(200).json(bookingData.bookingFlowData);
 };
@@ -54,11 +51,12 @@ const bookingFlow = async (req, res) => {
   } = req.body.finalBookingData;
 
   const studioFromDb = await User.findOne({ _id: studio });
-
+  const newBookingId = shortid.generate();
   try {
     const booking = new BookingFlow({
       client: clientFromDb._id,
       studio: studio,
+      bookingId: newBookingId,
       bookingDate,
       fromDate,
       toDate,
@@ -83,7 +81,7 @@ const bookingFlow = async (req, res) => {
 
     await studioFromDb.save();
 
-    res.status(200).json("Booking Successful" + booking);
+    res.status(200).json("Booking Successful" + newBookingId);
   } catch (error) {
     console.log("error => ", error);
     res.status(400).json({ error: error.message });
