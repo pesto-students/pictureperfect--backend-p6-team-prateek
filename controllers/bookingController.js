@@ -81,7 +81,7 @@ const bookingFlow = async (req, res) => {
 
     await studioFromDb.save();
 
-    res.status(200).json("Booking Successful" + newBookingId);
+    res.status(200).json(newBookingId);
   } catch (error) {
     console.log("error => ", error);
     res.status(400).json({ error: error.message });
