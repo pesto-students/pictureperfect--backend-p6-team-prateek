@@ -1,6 +1,10 @@
 const express = require("express");
 
-const { getClientData } = require("../controllers/clientController");
+const {
+  getClientData,
+  updateBasicDetails,
+  updateEmail,
+} = require("../controllers/clientController");
 
 const requireAuth = require("../middleware/requireAuth");
 
@@ -10,5 +14,9 @@ const router = express.Router();
 router.use(requireAuth);
 
 router.get("/", getClientData);
+
+router.put("/profile/basicDetails/", updateBasicDetails);
+
+router.put("/profile/email/", updateEmail);
 
 module.exports = router;

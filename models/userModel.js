@@ -71,7 +71,6 @@ userSchema.statics.signup = async function (
     client: user._id,
     firstName,
     lastName,
-    defaultCity: "Mumbai",
   });
 
   await client.save();
