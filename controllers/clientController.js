@@ -37,6 +37,12 @@ const updateEmail = async (req, res) => {
   const user_id = req.user._id;
   const { editUserEmail } = req.body;
 
+  const exists = await User.findOne({ email: editUserEmail });
+
+  if (exists) {
+    throw Error("Email aready in use by another user");
+  }
+
   const userToBeUpdated = await User.findOneAndUpdate(
     { _id: user_id },
     { email: editUserEmail },
