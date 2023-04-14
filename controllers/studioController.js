@@ -28,4 +28,21 @@ const getAllStudios = async (req, res) => {
   res.status(200).json(studiosList);
 };
 
-module.exports = { getStudioData, getAllStudios };
+const updateStudioName = async (req, res) => {};
+
+const updateStudioContact = async (req, res) => {};
+
+const updateStudioLocation = async (req, res) => {};
+
+const updateStudioEmail = async (req, res) => {};
+const updateStudioProfile = async (req, res) => {};
+
+module.exports = {
+  getStudioData,
+  getAllStudios,
+  updateStudioName,
+  updateStudioContact,
+  updateStudioLocation,
+  updateStudioEmail,
+  updateStudioProfile,
+};
