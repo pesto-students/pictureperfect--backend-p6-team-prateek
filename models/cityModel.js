@@ -5,7 +5,7 @@ const { model, Schema } = mongoose;
 const citySchema = new Schema({
   cityName: {
     type: String,
-    unique: true
+    unique: true,
   },
 });
 

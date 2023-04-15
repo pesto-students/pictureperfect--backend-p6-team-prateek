@@ -121,12 +121,10 @@ userSchema.statics.register = async function (
   studioAbout,
   studioDailyRate
 ) {
-  console.log("email => ", studioEmail);
   //validation
   if (!studioEmail || !password) {
     throw Error("All fields must be filled");
   }
-  console.log("email => ", studioEmail);
 
   if (!validator.isEmail(studioEmail)) {
     throw Error("Email is not valid");

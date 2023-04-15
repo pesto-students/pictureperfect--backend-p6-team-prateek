@@ -5,11 +5,11 @@ const { model, Schema } = mongoose;
 const categorySchema = new Schema({
   categoryName: {
     type: String,
-    unique: true
+    unique: true,
   },
   categoryValue: {
     type: String,
-    unique: true
+    unique: true,
   },
 });
 

@@ -4,8 +4,7 @@ const {
   signupUser,
   loginUser,
   registerStudio,
-  verifyUser
-  //getRole
+  verifyUser,
 } = require("../controllers/userController");
 
 const router = express.Router();
@@ -24,8 +23,6 @@ router.post("/register-studio", registerStudio);
 
 // verfiy user route
 
-router.put("/verifiedUser",verifyUser);
-
-//router.get('',getRole);
+router.put("/verifiedUser", verifyUser);
 
 module.exports = router;

@@ -9,8 +9,6 @@ const getStudioData = async (req, res) => {
     path: "userData",
   });
 
-  console.log(user);
-
   res.status(200).json(user.userData);
 };
 
@@ -43,8 +41,6 @@ const updateStudioName = async (req, res) => {
     { new: true, upsert: true }
   );
 
-  console.log(studioToBeUpdated);
-
   res.status(200).json("Success" + studioToBeUpdated);
 };
 
@@ -67,8 +63,6 @@ const updateStudioEmail = async (req, res) => {
       { email: studioEmailValue },
       { new: true, upsert: true }
     );
-
-    console.log(userToBeUpdated);
 
     res.status(200).json("Success" + userToBeUpdated);
   } catch (error) {

@@ -3,7 +3,7 @@ const express = require("express");
 const {
   getBookingData,
   getAllBookings,
-  bookingFlow
+  bookingFlow,
 } = require("../controllers/bookingController");
 
 const requireAuth = require("../middleware/requireAuth");

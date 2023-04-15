@@ -5,11 +5,9 @@ const albumSchema = new Schema({
   studio: { type: Schema.Types.ObjectId, ref: "PhotoStudio" },
   name: {
     type: String,
-    // required: true,
   },
   category: {
     type: String,
-    // required: true,
   },
   description: {
     type: String,

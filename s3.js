@@ -13,7 +13,6 @@ const s3 = new S3({
 });
 
 const uploadImage = async (url, name) => {
-  //const image = dataURItoBlob(file);
   const base64Data = new Buffer.from(
     url.replace(/^data:image\/\w+;base64,/, ""),
     "base64"
@@ -30,6 +29,7 @@ const uploadImage = async (url, name) => {
   return await s3.upload(uploadParams).promise();
 };
 // ContentType: "image/jpeg",
+
 var atob = require("atob");
 function dataURItoBlob(dataURI) {
   var binary = atob(dataURI.split(",")[1]);

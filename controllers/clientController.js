@@ -9,8 +9,6 @@ const getClientData = async (req, res) => {
     path: "userData",
   });
 
-  console.log(user);
-
   res.status(200).json(user.userData);
 };
 
@@ -27,8 +25,6 @@ const updateBasicDetails = async (req, res) => {
     { firstName: editUserFirstName, lastName: editUserLastName },
     { new: true, upsert: true }
   );
-
-  console.log(clientToBeUpdated);
 
   res.status(200).json("Success" + clientToBeUpdated);
 };
@@ -48,8 +44,6 @@ const updateEmail = async (req, res) => {
     { email: editUserEmail },
     { new: true, upsert: true }
   );
-
-  console.log(userToBeUpdated);
 
   res.status(200).json("Success" + userToBeUpdated);
 };

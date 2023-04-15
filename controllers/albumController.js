@@ -7,12 +7,6 @@ const upload = multer({ dest: "uploads/" });
 const { uploadImage } = require("../s3");
 let randomString = require("randomstring");
 
-// async function imageUpload(image, albumId) {
-//   //   console.log(image.data_url);
-//   const uploadedImage = await uploadImage(image.data_url);
-//   console.log(uploadedImage.Location);
-//   return uploadedImage.Location;
-// }
 const createAlbum = async (req, res) => {
   const studio_id = req.user._id;
   const studioFromDb = await User.findOne({ _id: studio_id }).populate({
@@ -50,14 +44,12 @@ const createAlbum = async (req, res) => {
       });
 
     const { Location } = await uploadImage(image.data_url, imageName);
-    console.log(Location);
+
     const imglist = new imagelist({
       album: id._id,
       imagesUrl: Location,
     });
     await imglist.save();
-
-    console.log(imglist);
 
     return imglist;
   });
@@ -67,7 +59,7 @@ const createAlbum = async (req, res) => {
   await album.save();
 
   studioFromDb.userData.albums.push(album);
-  console.log(studioFromDb);
+
   await studioFromDb.userData.save();
   await studioFromDb.save();
 };
@@ -85,16 +77,7 @@ const albumdetails = async (req, res) => {
     },
   });
 
-  // const results = await Album.find().populate({
-  //   path: "images",
-  // });
-  console.log(studioFromDb.userData.albums);
   res.status(200).json(studioFromDb.userData.albums);
-  // if (results) {
-  //   res.status(200).json(results);
-  // } else {
-  //   res.status(400).send({ message: "searched result not found" });
-  // }
 };
 
 const albumData = async (req, res) => {

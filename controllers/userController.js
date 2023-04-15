@@ -15,8 +15,6 @@ const loginUser = async (req, res) => {
 
     const role = await user.role;
     const isUserVerified = await user.isUserVerified;
-    console.log(role);
-    // create a token
 
     const token = createToken(user._id);
 
@@ -75,7 +73,7 @@ const registerStudio = async (req, res) => {
     studioAbout,
     studioDailyRate,
   } = req.body;
-  console.log("emailAgain => ", studioEmail);
+
   try {
     const user = await User.register(
       studioName,
@@ -91,13 +89,12 @@ const registerStudio = async (req, res) => {
       studioAbout,
       studioDailyRate
     );
-    // console.log("user => ", user);
+
     // create a token
     const token = createToken(user._id);
     const email = await user.email;
     const isUserVerified = await user.isUserVerified;
 
-    // res.status(200).json(user);
     res.status(200).json({ email, isUserVerified, token });
   } catch (error) {
     console.log("error => ", error);
