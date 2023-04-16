@@ -82,7 +82,7 @@ const albumdetails = async (req, res) => {
 
 const albumData = async (req, res) => {
   const id = req.params.id;
-  //   res.send({ message: `searched result not found ${_id}` });
+
   const result = await Album.findById({ _id: id }).populate({
     path: "images",
     populate: {

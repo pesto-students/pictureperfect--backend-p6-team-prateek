@@ -7,6 +7,12 @@ const getStudioData = async (req, res) => {
 
   const user = await User.findOne({ _id: user_id }).populate({
     path: "userData",
+    populate: {
+      path: "albums",
+      populate: {
+        path: "images",
+      },
+    },
   });
 
   res.status(200).json(user.userData);
@@ -19,7 +25,15 @@ const getAllStudios = async (req, res) => {
     isUserVerified: true,
     role: "PhotoStudio",
   })
-    .populate("userData")
+    .populate({
+      path: "userData",
+      populate: {
+        path: "albums",
+        populate: {
+          path: "images",
+        },
+      },
+    })
     .then((studios) => {
       studios.map((studio) => studiosList.push(studio.userData));
     });
